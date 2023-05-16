@@ -32,11 +32,6 @@ mkdir -p $translations_sub
 
 CUDA_VISIBLE_DEVICES=$device OMP_NUM_THREADS=$num_threads python -m joeynmt translate $configs/$model_name.yaml < $data/test.$src > $translations_sub/test.$model_name.$trg
 
-# remove first line with "sentence" to make hyp and ref equal length
-
-tail -n +2 $translations_sub/test.$model_name.$trg > $translations_sub/test.$model_name.clean.$trg
-mv $translations_sub/test.$model_name.clean.$trg $translations_sub/test.$model_name.$trg
-
 # compute case-sensitive BLEU 
 
 cat $translations_sub/test.$model_name.$trg | sacrebleu $data/test.$trg
