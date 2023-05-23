@@ -1,39 +1,40 @@
-name: "transformer_sample_config"
+name: "iten_transformer_bpe_2000_config"
 joeynmt_version: "2.0.0"
 
 
 data:
-    train: "?"
-    dev:   "?"
-    test:  "?"
+    train: "sampled_data/Sampledtrain.it-en"
+    dev:   "sampled_data/dev.it-en"
+    test:  "sampled_data/test.it-en"
     dataset_type: "plain"
     src:
-        lang: "?"
-        level: "?"
+        lang: "it"
+        level: "bpe"
         lowercase: False
         max_sent_length: 100
-        # either use a vocabulary limit:
-        voc_limit: ?
-        # or (= not both!) a file with a vocabulary built before starting the training:
-        voc_file : "?"
-        tokenizer_type: "?"
+        # Path to joint vocabulary:
+        voc_file : "vocabs/joint_BPE_vocab.2000"
+        tokenizer_type: "subword-nmt"
         tokenizer_cfg:
-            ?
+            pretokenizer: "moses"
+            num_merges: "2000"
+            codes: "vocabs/codes.2000"
     trg: 
-        lang: "?"
-        level: "?"
+        lang: "en"
+        level: "bpe"
         lowercase: False
         max_sent_length: 100
-        # either use a vocabulary limit:
-        voc_limit: ?
-        # or (= not both!) a file with a vocabulary built before starting the training:
-        voc_file : "?"
-        tokenizer_type: "?"
+        # Path to joint vocabulary:
+        voc_file : "vocabs/joint_BPE_vocab.2000"
+        tokenizer_type: "subword-nmt"
         tokenizer_cfg:
-            ?
+            #pretokenize so we can input whole sentence data.
+            pretokenizer: "moses"
+            num_merges: "2000"
+            codes: "vocabs/codes.2000"
 
 testing:
-    beam_size: ?
+    beam_size: 5
     alpha: 1.0
 
 training:
@@ -54,7 +55,7 @@ training:
     validation_freq: 500
     logging_freq: 100
     eval_metric: "bleu"
-    model_dir: "?"
+    model_dir: "models/iten_transformer_bpe_2000"
     overwrite: False
     shuffle: True
     use_cuda: False
