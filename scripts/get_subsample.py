@@ -45,8 +45,8 @@ def main():
 
     with (open(args.in_dir[0]+"/"+args.parallel_data[0],"r",encoding="utf-8") as in1,
           open(args.in_dir[0]+"/"+args.parallel_data[1],"r",encoding="utf-8") as in2,
-          open(args.out_dir[0]+"/Sampled"+args.parallel_data[0],"w",encoding="utf-8") as out1,
-          open(args.out_dir[0]+"/Sampled"+args.parallel_data[1],"w",encoding="utf-8") as out2):
+          open(args.out_dir[0]+"/"+args.parallel_data[0],"w",encoding="utf-8") as out1,
+          open(args.out_dir[0]+"/"+args.parallel_data[1],"w",encoding="utf-8") as out2):
             
             for call_num, (lines1, lines2), in enumerate(zip(in1,in2)):
                 samples1,samples2 = resevoir_sample(samples1,samples2,lines1, lines2, args.num_lines, call_num)

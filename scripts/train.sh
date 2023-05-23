@@ -16,7 +16,7 @@ SECONDS=0
 
 logs=$base/logs
 
-model_name=iten_transformer_word
+model_name=roen_transformer_word
 
 mkdir -p $logs
 
@@ -29,7 +29,7 @@ echo "$SECONDS seconds"
 
 SECONDS=0
 
-model_name=iten_transformer_bpe_2000
+model_name=roen_transformer_bpe_2000
 
 mkdir -p $logs/$model_name
 
@@ -40,7 +40,7 @@ echo "$SECONDS seconds"
 
 SECONDS=0
 
-model_name=iten_transformer_bpe_5000
+model_name=roen_transformer_bpe_5000
 
 mkdir -p $logs/$model_name
 
