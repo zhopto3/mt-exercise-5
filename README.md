@@ -23,15 +23,23 @@ Create a new virtualenv that uses Python 3.10. Please make sure to run this comm
 
 Download and install required software:
 
-    ./scripts/download_install_packages.sh
+    ./scripts/install_packages.sh
+
+Now install setuptools, torch, and joeyNMT as described in the exercise 4 pdf. 
 
 Download data:
 
-    ./download_iwslt_2017_data.sh
-    
-Before executing any further steps, you need to make the modifications described in the exercise pdf.
+    ./scripts/download_iwslt_2017_data.sh
 
-Train a model:
+Sample training data:
+
+    ./scripts/sample_data.sh
+    
+Learn BPE models, one with a vocabulary of 2000 symbols and one with a vocabulary of 5000 symbols. 
+
+    ./scripts/learnBPE.sh
+
+Train a word-level model and two BPE level models:
 
     ./scripts/train.sh
 
