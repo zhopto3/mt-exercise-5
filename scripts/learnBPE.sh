@@ -13,8 +13,6 @@ vocabs=$base/vocabs
 
 mkdir -p vocabs
 
-pip install subword-nmt
-
 #Number of symbols for First BPE Experiment
 Exp1_num=2000
 
