@@ -30,7 +30,10 @@ translations_sub=$translations/$model_name
 
 mkdir -p $translations_sub
 
-CUDA_VISIBLE_DEVICES=$device OMP_NUM_THREADS=$num_threads python -m joeynmt translate $configs/$model_name.yaml < $data/test.ro-en.$src > $translations_sub/test.$model_name.$trg
+#made changes to call because (for some reason) the original version was printing the testing_batch_type at the beginning of all the translation files
+#CUDA_VISIBLE_DEVICES=$device OMP_NUM_THREADS=$num_threads python -m joeynmt translate $configs/$model_name.yaml < $data/test.ro-en.$src > $translations_sub/test.$model_name.$trg
+CUDA_VISIBLE_DEVICES=$device OMP_NUM_THREADS=$num_threads python -m joeynmt translate $configs/$model_name.yaml -o $translations_sub/test.$model_name.$trg < $data/test.ro-en.$src 
+
 
 # compute case-sensitive BLEU for word-level model
 
@@ -51,7 +54,9 @@ translations_sub=$translations/$model_name
 
 mkdir -p $translations_sub
 
-CUDA_VISIBLE_DEVICES=$device OMP_NUM_THREADS=$num_threads python -m joeynmt translate $configs/$model_name.yaml < $data/test.ro-en.$src > $translations_sub/test.$model_name.$trg
+#CUDA_VISIBLE_DEVICES=$device OMP_NUM_THREADS=$num_threads python -m joeynmt translate $configs/$model_name.yaml < $data/test.ro-en.$src > $translations_sub/test.$model_name.$trg
+CUDA_VISIBLE_DEVICES=$device OMP_NUM_THREADS=$num_threads python -m joeynmt translate $configs/$model_name.yaml -o $translations_sub/test.$model_name.$trg < $data/test.ro-en.$src 
+
 
 # compute case-sensitive BLEU for sub-word-level model (with 2000 symbols in vocabulary)
 
@@ -72,7 +77,9 @@ translations_sub=$translations/$model_name
 
 mkdir -p $translations_sub
 
-CUDA_VISIBLE_DEVICES=$device OMP_NUM_THREADS=$num_threads python -m joeynmt translate $configs/$model_name.yaml < $data/test.ro-en$src > $translations_sub/test.$model_name.$trg
+#CUDA_VISIBLE_DEVICES=$device OMP_NUM_THREADS=$num_threads python -m joeynmt translate $configs/$model_name.yaml < $data/test.ro-en.$src > $translations_sub/test.$model_name.$trg
+CUDA_VISIBLE_DEVICES=$device OMP_NUM_THREADS=$num_threads python -m joeynmt translate $configs/$model_name.yaml -o $translations_sub/test.$model_name.$trg < $data/test.ro-en.$src 
+
 
 # compute case-sensitive BLEU for sub-word-level model (with 2000 symbols in vocabulary)
 
