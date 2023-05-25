@@ -10,18 +10,18 @@ translations=$base/translations
 
 mkdir -p $translations
 
-src=?
-trg=?
+src=ro
+trg=en
 
 
-num_threads=4
+num_threads=2
 device=0
 
 # measure time
 
 SECONDS=0
 
-model_name=?
+model_name=roen_transformer_word
 
 echo "###############################################################################"
 echo "model_name $model_name"
@@ -30,11 +30,53 @@ translations_sub=$translations/$model_name
 
 mkdir -p $translations_sub
 
-CUDA_VISIBLE_DEVICES=$device OMP_NUM_THREADS=$num_threads python -m joeynmt translate $configs/$model_name.yaml < $data/test.$src > $translations_sub/test.$model_name.$trg
+CUDA_VISIBLE_DEVICES=$device OMP_NUM_THREADS=$num_threads python -m joeynmt translate $configs/$model_name.yaml < $data/test.ro-en.$src > $translations_sub/test.$model_name.$trg
 
-# compute case-sensitive BLEU 
+# compute case-sensitive BLEU for word-level model
 
-cat $translations_sub/test.$model_name.$trg | sacrebleu $data/test.$trg
+cat $translations_sub/test.$model_name.$trg | sacrebleu $data/test.ro-en.$trg
+
+
+echo "time taken:"
+echo "$SECONDS seconds"
+
+SECONDS=0
+
+model_name=roen_transformer_bpe_2000
+
+echo "###############################################################################"
+echo "model_name $model_name"
+
+translations_sub=$translations/$model_name
+
+mkdir -p $translations_sub
+
+CUDA_VISIBLE_DEVICES=$device OMP_NUM_THREADS=$num_threads python -m joeynmt translate $configs/$model_name.yaml < $data/test.ro-en.$src > $translations_sub/test.$model_name.$trg
+
+# compute case-sensitive BLEU for sub-word-level model (with 2000 symbols in vocabulary)
+
+cat $translations_sub/test.$model_name.$trg | sacrebleu $data/test.ro-en.$trg
+
+echo "time taken:"
+echo "$SECONDS seconds"
+
+
+SECONDS=0
+
+model_name=roen_transformer_bpe_5000
+
+echo "###############################################################################"
+echo "model_name $model_name"
+
+translations_sub=$translations/$model_name
+
+mkdir -p $translations_sub
+
+CUDA_VISIBLE_DEVICES=$device OMP_NUM_THREADS=$num_threads python -m joeynmt translate $configs/$model_name.yaml < $data/test.ro-en$src > $translations_sub/test.$model_name.$trg
+
+# compute case-sensitive BLEU for sub-word-level model (with 2000 symbols in vocabulary)
+
+cat $translations_sub/test.$model_name.$trg | sacrebleu $data/test.ro-en.$trg
 
 
 echo "time taken:"

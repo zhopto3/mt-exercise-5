@@ -45,6 +45,8 @@ Train a word-level model and two BPE level models:
 
 The training process can be interrupted at any time, and the best checkpoint will always be saved.
 
-Evaluate a trained model with
+Once training for the three models is complete, the following script can be run in order to evaluate all three models on the test set data. It will output the case-sensitive BLEU score for each of the three models (using a constant beam size of five). 
 
     ./scripts/evaluate.sh
+
+## Beam Size Experimentation
