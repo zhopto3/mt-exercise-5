@@ -50,3 +50,19 @@ Once training for the three models is complete, the following script can be run 
     ./scripts/evaluate.sh
 
 ## Beam Size Experimentation
+
+The second part of the assignment required us to evaluate the speed and quality of our best model's translations using varying beam sizes during decoding. We chose the following sizes: 1 (which is technicall greedy decoding), 2, 3, 4, 5, 10, 15, 20, 25, and 30. We added updated configurations to translate using each of those beam size in the folder
+
+    ./beamsearch_configs
+
+By running the following shell script, the translations for each beam size will be carried out and evaluated:
+
+    ./scripts/run_beamsize_expts.sh
+
+The transaltions and the evaluations (as well as the time taken to translate) will all be saved to the folder
+
+    ./beamsearch_results
+
+The same shell script will also save visualizations of the results (as .pngs) to the same folder. These are made using the python script we created, 
+
+    ./scripts/vis_beamsearch.py
