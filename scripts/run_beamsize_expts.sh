@@ -21,7 +21,7 @@ trg=en
 num_threads=2
 device=0
 
-for i in 2 3 4 5 6 7 9 11 13 15
+for i in 1 2 3 4 5 10 15 20 25 30
 do
 # measure time
 
@@ -45,3 +45,8 @@ echo "$SECONDS seconds" >> $beamsearch_results/eval.$model_name
 echo "time taken:"
 echo "$SECONDS seconds"
 done
+
+
+#get visualizations of results
+
+python scripts/vis_beamsearch.py --input-dir "beamsearch_results" --out-dir "beamsearch_results"

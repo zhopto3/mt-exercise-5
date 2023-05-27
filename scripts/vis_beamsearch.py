@@ -46,15 +46,15 @@ def get_data(input: str)->dict:
 def save_graphs(data: pd.DataFrame, out: str)->None:
     #bleu = plt.figure()
 
-    qual = sns.lineplot(data, x = "BeamSize", y="BLEU")
+    qual = sns.lineplot(data, x = "BeamSize", y="BLEU").set(title="Comparison of BLEU and Beam Size")
 
-    plt.ylim(0,100)
+    plt.ylim(0,40)
 
     plt.savefig(out+"/BeamsizeBleu.png")
     #clear current plot settings
     plt.clf()
 
-    time = sns.lineplot(data, x = "BeamSize", y="time")
+    time = sns.lineplot(data, x = "BeamSize", y="time").set(title="Comparison of Translation Time and Beam Size")
 
     plt.savefig(out+"/BeamsizeTime.png")
 
