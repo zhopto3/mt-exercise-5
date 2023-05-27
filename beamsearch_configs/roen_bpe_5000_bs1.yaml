@@ -35,7 +35,7 @@ data:
             codes: "vocabs/codes.5000"
 
 testing:
-    beam_size: 11
+    beam_size: 1
     beam_alpha: 1.0
 
 training:
